@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/mainLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".timeCounterActivity"
+    android:background="@color/colorPrimary"
+    >
+    <LinearLayout
+        android:id="@+id/orderDetailsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="102dp"
+        android:orientation="vertical">
+<LinearLayout
+    android:id="@+id/designerNameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:visibility="gone"
+
+    >
+    <TextView
+        android:id="@+id/designedByText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="74dp"
+        android:layout_gravity="center_vertical"
+        android:textSize="14sp"
+        android:text="Designed by"
+        android:textColor="@android:color/white"
+        android:alpha="0.5"/>
+    <TextView
+        android:id="@+id/designerNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="27sp"
+        android:text="Reshma"
+        android:textColor="@android:color/white"
+        android:alpha="0.5"/>
+</LinearLayout>
+        <TextView
+            android:id="@+id/orderNoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="81sp"
+            android:textColor="@android:color/white"
+         />
+        <TextView
+            android:id="@+id/itemNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="43sp"
+            android:text="Wedding gown"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/timerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orderDetailsLayout"
+        android:orientation="vertical">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/startBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Start !"
+            android:textColor="@color/taskSucces"
+            app:backgroundTint="@color/colorPrimary"
+            android:visibility="invisible"
+            />
+        <TextView
+            android:id="@+id/timerText"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/timerColor"
+            android:textSize="69sp"
+
+            />
+
+        <LinearLayout
+            android:id="@+id/controlLayout"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+                <me.zhanghai.android.materialplaypausedrawable.MaterialPlayPauseButton
+                    android:id="@+id/play_pause_btn"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:tint="@color/timerColor"
+                    android:background="@color/colorPrimary"
+                    />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/completeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Complete"
+                android:textColor="@color/taskSucces"
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="18dp"
+                android:foregroundGravity="left"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

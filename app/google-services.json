@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "712329726305",
+    "firebase_url": "https://saffron-from-zr.firebaseio.com",
+    "project_id": "saffron-from-zr",
+    "storage_bucket": "saffron-from-zr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712329726305:android:268784c75f881da8f19d20",
+        "android_client_info": {
+          "package_name": "com.example.android.saffronfromzr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712329726305-ttdehd4vpm0ut3r5d8bui34pjqg98ar1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.saffronfromzr",
+            "certificate_hash": "510f168ee20c66464229cdc833184d18145a55ea"
+          }
+        },
+        {
+          "client_id": "712329726305-dp74b2vephe3ncvhp72qel3okkgbva3t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.saffronfromzr",
+            "certificate_hash": "d1a65e2cd480aa2e5aaa1e69ca6b95b87b92ee0d"
+          }
+        },
+        {
+          "client_id": "712329726305-589gbua6urjc97m0pnou89vmmm36metp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOHerSJwGIBDk84wM_5aO4PMxr1j3cRl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712329726305-589gbua6urjc97m0pnou89vmmm36metp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712329726305:android:765ac855ecaa2569f19d20",
+        "android_client_info": {
+          "package_name": "com.example.workflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712329726305-oe3bb5vn6hq5msi5muftrselhpqlaoua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.workflow",
+            "certificate_hash": "d1a65e2cd480aa2e5aaa1e69ca6b95b87b92ee0d"
+          }
+        },
+        {
+          "client_id": "712329726305-589gbua6urjc97m0pnou89vmmm36metp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOHerSJwGIBDk84wM_5aO4PMxr1j3cRl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712329726305-589gbua6urjc97m0pnou89vmmm36metp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
