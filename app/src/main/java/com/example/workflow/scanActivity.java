@@ -226,7 +226,7 @@ public class scanActivity extends AppCompatActivity {
                 if (dataSnapshot.exists())
                 {
                     Log.d(TAG,"if:runned");
-                    Log.d(TAG,"checkOrdeNoValid:runned"+dataSnapshot.getKey());
+                    Log.d(TAG,"checkOrderNoValid:runned"+dataSnapshot.getKey());
                     passValueToActivity(orderNo);
                 }
                 else
@@ -245,9 +245,9 @@ public class scanActivity extends AppCompatActivity {
 
     private void passValueToActivity(String orderNo) {
         Log.d(TAG,"passValueToActivity:runned");
-        Intent controlActivity=new Intent(getApplicationContext(),timeCounterActivity.class);
-        controlActivity.putExtra("orderNo",orderNo);
-        startActivity(controlActivity);
+        Intent selectItemActivity=new Intent(getApplicationContext(),selectItemActivity.class);
+        selectItemActivity.putExtra("orderNo",orderNo);
+        startActivity(selectItemActivity);
 
     }
 

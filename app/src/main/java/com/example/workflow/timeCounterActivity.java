@@ -44,9 +44,10 @@ public class timeCounterActivity extends AppCompatActivity {
     TextView orderNoText;
 
     String orderNo;
+    String itemName;
     String to;
-    static String operatorName="moybool";
-    static String operation="handwork";
+    static String operatorName="sathyan";
+    static String operation="stitching";
 
     Stopwatch stopwatch = new Stopwatch();
 
@@ -64,6 +65,7 @@ public class timeCounterActivity extends AppCompatActivity {
         timerText=findViewById(R.id.timerText);
         Intent intent=getIntent();
         orderNo=intent.getStringExtra("orderNo");
+        itemName=intent.getStringExtra("itemName");
 
 //        fetchData();
         controlBtnListener();
@@ -72,12 +74,18 @@ public class timeCounterActivity extends AppCompatActivity {
 
         Log.d(TAG,"orderNo"+orderNo);
         orderNoText.setText(orderNo);
+        itemNameText.setText(itemName);
+        showItemNameText();
 
 
 
 
 
 
+    }
+
+    private void showItemNameText() {
+        itemNameText.setVisibility(View.VISIBLE);
     }
 
     private void isAllowedUser() {
@@ -167,7 +175,7 @@ public class timeCounterActivity extends AppCompatActivity {
     }
     private void updateTo() {
         DatabaseReference workFlowOrders=FirebaseDatabase.getInstance().
-                getReference("workFlow").child("workFlowOrders").child(orderNo).child(operation)
+                getReference("workFlow").child("workFlowOrders").child(orderNo).child(itemName).child(operation)
                 .child(operatorName);
         workFlowOrders.child("to"+to).setValue(getDateTime());
 
@@ -252,7 +260,7 @@ public class timeCounterActivity extends AppCompatActivity {
     {
 
         DatabaseReference workFlowOrders=FirebaseDatabase.getInstance().
-                getReference("workFlow").child("workFlowOrders").child(orderNo).child(operation)
+                getReference("workFlow").child("workFlowOrders").child(orderNo).child(itemName).child(operation)
                 .child(operatorName);
         workFlowOrders.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
