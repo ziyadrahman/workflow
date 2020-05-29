@@ -26,6 +26,7 @@ import me.zhanghai.android.materialplaypausedrawable.MaterialPlayPauseButton;
 import me.zhanghai.android.materialplaypausedrawable.MaterialPlayPauseDrawable;
 
 import static com.example.workflow.scanActivity.alreadyRunned;
+import static java.lang.Boolean.getBoolean;
 
 public class timeCounterActivity extends AppCompatActivity {
     String TAG="timerActivity";
@@ -46,8 +47,10 @@ public class timeCounterActivity extends AppCompatActivity {
     String orderNo;
     String itemName;
     String to;
-    static String operatorName="sathyan";
-    static String operation="stitching";
+    String newOrAlteration="new";
+    Boolean alterationStatus=false;
+    static String operatorName="mani";
+    static String operation="cutting";
 
     Stopwatch stopwatch = new Stopwatch();
 
@@ -66,7 +69,11 @@ public class timeCounterActivity extends AppCompatActivity {
         Intent intent=getIntent();
         orderNo=intent.getStringExtra("orderNo");
         itemName=intent.getStringExtra("itemName");
-
+        alterationStatus = Objects.requireNonNull(intent.getExtras()).getBoolean("alterationStatus");
+        if (alterationStatus)
+        {
+            newOrAlteration="alteration";
+        }
 //        fetchData();
         controlBtnListener();
         startBtnListener();
@@ -175,7 +182,7 @@ public class timeCounterActivity extends AppCompatActivity {
     }
     private void updateTo() {
         DatabaseReference workFlowOrders=FirebaseDatabase.getInstance().
-                getReference("workFlow").child("workFlowOrders").child(orderNo).child(itemName).child(operation)
+                getReference("workFlow").child("workFlowOrders").child(orderNo).child(newOrAlteration).child(itemName).child(operation)
                 .child(operatorName);
         workFlowOrders.child("to"+to).setValue(getDateTime());
 
@@ -260,7 +267,7 @@ public class timeCounterActivity extends AppCompatActivity {
     {
 
         DatabaseReference workFlowOrders=FirebaseDatabase.getInstance().
-                getReference("workFlow").child("workFlowOrders").child(orderNo).child(itemName).child(operation)
+                getReference("workFlow").child("workFlowOrders").child(orderNo).child(newOrAlteration).child(itemName).child(operation)
                 .child(operatorName);
         workFlowOrders.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

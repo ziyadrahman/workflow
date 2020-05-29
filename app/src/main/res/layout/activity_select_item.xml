@@ -6,19 +6,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".selectItemActivity">
+    <LinearLayout
+        android:id="@+id/orderDetailsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/alterationLayout"
+        android:orientation="horizontal">
+
     <TextView
         android:id="@+id/orderNoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/itemsListView"
-        android:textSize="81sp"
+
         android:textColor="@android:color/white"
-        />
+
+        android:textSize="52sp" />
+    <TextView
+        android:id="@+id/designerNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="10dp"
+
+        android:textSize="42sp"
+        android:textColor="@android:color/white"
+        android:visibility="gone"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/alterationLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_above="@id/itemsListView"
+       >
+        <TextView
+            android:id="@+id/alterationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/alteration_label"
+            android:textSize="42sp"/>
+        <CheckBox
+            android:id="@+id/alterationCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/alterationTextView"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"/>
+
+    </RelativeLayout>
     <ListView
         android:id="@+id/itemsListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:visibility="visible"
         />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/backBtn"
