@@ -9,56 +9,62 @@
     tools:context=".timeCounterActivity"
     android:background="@color/colorPrimary"
     >
+
     <LinearLayout
         android:id="@+id/orderDetailsLayout"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:layout_marginTop="102dp"
         android:orientation="vertical">
-<LinearLayout
-    android:id="@+id/designerNameLayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:visibility="gone"
 
-    >
-    <TextView
-        android:id="@+id/designedByText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="74dp"
-        android:layout_gravity="center_vertical"
-        android:textSize="14sp"
-        android:text="Designed by"
-        android:textColor="@android:color/white"
-        android:alpha="0.5"/>
-    <TextView
-        android:id="@+id/designerNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="27sp"
-        android:text="Reshma"
-        android:textColor="@android:color/white"
-        android:alpha="0.5"/>
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/designerNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+
+            >
+
+            <TextView
+                android:id="@+id/designedByText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="74dp"
+                android:alpha="0.5"
+                android:text="Designed by"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/designerNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                android:text="Reshma"
+                android:textColor="@android:color/white"
+                android:textSize="27sp" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/orderNoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="81sp"
             android:textColor="@android:color/white"
-         />
+            android:textSize="81sp" />
+
         <TextView
             android:id="@+id/itemNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="43sp"
             android:text="Wedding gown"
-            android:visibility="gone"
             android:textColor="@android:color/white"
+            android:textSize="43sp"
+            android:visibility="gone"
 
             />
 
@@ -87,12 +93,11 @@
             android:layout_gravity="center"
             android:textColor="@color/timerColor"
             android:textSize="69sp"
-
             />
 
         <LinearLayout
             android:id="@+id/controlLayout"
-            android:visibility="gone"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -114,7 +119,22 @@
                 app:backgroundTint="@color/colorPrimary"
                 app:cornerRadius="18dp"
                 android:foregroundGravity="left"
+
+
                 />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/backBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:textColor="@color/timerColor"
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="18dp"
+                android:foregroundGravity="left"
+                android:visibility="gone"
+
+                />
+
 
 
         </LinearLayout>

@@ -251,5 +251,6 @@ public class scanActivity extends AppCompatActivity {
 
     }
 
+
 }
 

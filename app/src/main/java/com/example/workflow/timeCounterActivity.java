@@ -2,6 +2,7 @@ package com.example.workflow;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -38,6 +39,7 @@ public class timeCounterActivity extends AppCompatActivity {
 
     MaterialButton startBtn;
     MaterialButton completeBtn;
+    MaterialButton backBtn;
 
     TextView itemNameText;
     TextView timerText;
@@ -49,19 +51,29 @@ public class timeCounterActivity extends AppCompatActivity {
     String to;
     String newOrAlteration="new";
     Boolean alterationStatus=false;
-    static String operatorName="mani";
-    static String operation="cutting";
+    static String operatorName="tajammul";
+    static String operation="handwork";
+
+
 
     Stopwatch stopwatch = new Stopwatch();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState!=null)
+        {
+           to= savedInstanceState.getString("mCurrentTrail");
+           goneStartBtn();
+           showTimerText();
+           showControls();
+        }
         setContentView(R.layout.activity_time_counter);
         isAllowedUser();
 
         materialPlayPauseButton = findViewById(R.id.play_pause_btn);
         completeBtn=findViewById(R.id.completeBtn);
+        backBtn=findViewById(R.id.backBtn);
         designerNameText=findViewById(R.id.designerNameText);
         itemNameText=findViewById(R.id.itemNameText);
         orderNoText=findViewById(R.id.orderNoText);
@@ -83,10 +95,19 @@ public class timeCounterActivity extends AppCompatActivity {
         orderNoText.setText(orderNo);
         itemNameText.setText(itemName);
         showItemNameText();
+//        onDisconnect();
 
 
 
 
+
+
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("mCurrentTrail",to);
 
 
     }
@@ -124,9 +145,17 @@ public class timeCounterActivity extends AppCompatActivity {
         completeBtn=findViewById(R.id.completeBtn);
         completeBtn.setOnClickListener(v -> {
             updateTo();
+            updateOperationStatus();
             backToLastActivity();
 
         });
+    }
+
+    private void updateOperationStatus() {
+        DatabaseReference operationStatusDb=FirebaseDatabase.getInstance().getReference("workFlow")
+                .child("operationStatus");
+        operationStatusDb.child(orderNo).child(itemName).child(operation).setValue(true);
+
     }
 
     private void fetchData() {
@@ -179,12 +208,27 @@ public class timeCounterActivity extends AppCompatActivity {
     private void updateFrom() {
 
         updateTimeInDb("from");
+        updateStatus(true);
     }
     private void updateTo() {
         DatabaseReference workFlowOrders=FirebaseDatabase.getInstance().
                 getReference("workFlow").child("workFlowOrders").child(orderNo).child(newOrAlteration).child(itemName).child(operation)
                 .child(operatorName);
         workFlowOrders.child("to"+to).setValue(getDateTime());
+        updateStatus(false);
+
+
+    }
+    private void updateStatus(Boolean isRunning)
+    {
+        DatabaseReference updateStatus=FirebaseDatabase.getInstance().
+                getReference("workFlow").child("productionStatus").child(operatorName);
+               updateStatus.setValue(isRunning);
+    }
+    private void onDisconnect(){
+        DatabaseReference updateStatus=FirebaseDatabase.getInstance().
+                getReference("workFlow").child("productionStatus").child(operatorName);
+        updateStatus.onDisconnect().setValue(false);
 
 
     }
@@ -225,7 +269,8 @@ public class timeCounterActivity extends AppCompatActivity {
         {
             changeState=MaterialPlayPauseDrawable.State.Pause;
             updateTo();
-            hideCompleteBtn();
+            goneCompleteBtn();
+            showBackBtn();
             pauseTimer();
 
 
@@ -235,8 +280,24 @@ public class timeCounterActivity extends AppCompatActivity {
             changeState=MaterialPlayPauseDrawable.State.Play;
             updateFrom();
             resumeTimer();
+            goneBackBtn();
             showCompleteBtn();
         }
+    }
+
+    private void showBackBtn() {
+     backBtn.setVisibility(View.VISIBLE);
+     backBtn.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             backToLastActivity();
+         }
+     });
+
+    }
+    private void goneBackBtn() {
+        backBtn.setVisibility(View.GONE);
+
     }
 
     private void resumeTimer() {
@@ -250,6 +311,7 @@ public class timeCounterActivity extends AppCompatActivity {
     private void hideCompleteBtn() {
         completeBtn.setVisibility(View.INVISIBLE);
     }
+    private void goneCompleteBtn(){completeBtn.setVisibility(View.GONE);}
 
     private void showCompleteBtn() {
         completeBtn.setVisibility(View.VISIBLE);
@@ -265,6 +327,7 @@ public class timeCounterActivity extends AppCompatActivity {
 
     public void updateTimeInDb(String fromORto)
     {
+
 
         DatabaseReference workFlowOrders=FirebaseDatabase.getInstance().
                 getReference("workFlow").child("workFlowOrders").child(orderNo).child(newOrAlteration).child(itemName).child(operation)
@@ -303,6 +366,12 @@ public class timeCounterActivity extends AppCompatActivity {
     private void backToLastActivity() {
         alreadyRunned=true;
         timeCounterActivity.super.finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        updateStatus(false);
     }
 }
 
